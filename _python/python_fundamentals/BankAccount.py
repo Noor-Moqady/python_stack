@@ -21,7 +21,7 @@ class BankAccount:
         self.account_balance+(self.account_balance*self.intrest_rate)
         return self
     def display_user_balance(self):
-        print(f"User: {self.name}, Balance: ${self.account_balance}, Interest rate: {self.intrest_rate}")
+        print(f"User name: {self.name}, User email: {self.email}, Balance: ${self.account_balance}, Interest rate: {self.intrest_rate}")
         return self
  
 guido = BankAccount("Guido van Rossum", "guido@python.com")
@@ -33,9 +33,6 @@ guido.make_deposit(100).make_deposit(200).make_deposit(200).make_withdrawal(50).
 monty.make_deposit(50).make_deposit(500).make_withdrawal(100).display_user_balance().yield_interest()
 
 noor.make_deposit(500).make_withdrawal(50).make_withdrawal(20).make_withdrawal(150).display_user_balance().yield_interest()
-
-print(guido.name)
-print(monty.email)
 
 
 
