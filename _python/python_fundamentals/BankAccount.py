@@ -24,7 +24,7 @@ guido = BankAccount("Guido van Rossum", "guido@python.com")
 monty = BankAccount("Monty Python", "monty@python.com")
 noor = BankAccount("Noor Python", "noor@python.com")
 
-guido.make_deposit(100).make_deposit(200).make_deposit(200).make_withdrawal(50).display_user_balance().transfer_money(monty, 500)
+guido.make_deposit(100).make_deposit(200).make_deposit(200).make_withdrawal(50).transfer_money(monty, 500).display_user_balance()
 
 monty.make_deposit(50).make_deposit(500).make_withdrawal(100).display_user_balance()
 
