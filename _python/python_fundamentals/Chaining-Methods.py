@@ -14,7 +14,7 @@ class User:
        other_user.make_deposit(amount3)
        return self
     def display_user_balance(self):
-        print(self.account_balance)
+        print(f"User: {self.name}, Balance: ${self.account_balance}")
         return self
 guido = User("Guido van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
