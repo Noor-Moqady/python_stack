@@ -21,7 +21,7 @@ guido.make_deposit(100)
 guido.make_deposit(200)
 guido.make_deposit(200)
 guido.make_withdrawal(50)
-guido.transfer_money(monty, 400)
+guido.transfer_money(monty, 200)
 guido.display_user_balance()
 
 monty.make_deposit(50)

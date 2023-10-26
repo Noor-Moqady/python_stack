@@ -15,7 +15,7 @@ def print_return (numlist2):
     print (numlist2[0])
     return numlist2 [1]
 print_return(numlist2)
-print(print_return(numlist2))
+# print(print_return(numlist2))
 
  
 numlist3 = [1,2,3,4,5]

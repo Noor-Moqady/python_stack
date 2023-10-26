@@ -20,9 +20,11 @@ print (z)
 #################################################################################################### cant do the bouns!!!
 def iterateDictionary(any_list):
     for i in range(len(any_list)):
-        for key, val in any_list[i].items():
-            print(key, '-', val)
-            # print(', '.join(key, '-', val))
+        any_list [i]["first_name"]
+        print("first_name- "+ any_list [i]["first_name"] +", "+ "last_name- "+any_list [i]["last_name"])
+        #for key, val in any_list[i].items():
+            #print(key, '-', val)
+            #print("- ".join([key, val])) #.join function just for list
 students = [
          {'first_name':  'Michael', 'last_name' : 'Jordan'},
          {'first_name' : 'John', 'last_name' : 'Rosales'},

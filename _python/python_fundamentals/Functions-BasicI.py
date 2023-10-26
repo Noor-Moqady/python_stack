@@ -20,7 +20,7 @@ def a():
     print(10)
 print(a())
 
-#5 will print 5, none because print print cause none !!!
+#5 will print 5, none because print in the function is not return value print cause none !!!
 def a():
     print(5)
 x = a()
