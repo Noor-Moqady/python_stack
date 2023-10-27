@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Table</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='HTML_able.css')}}">
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <th class="head">First Name</th>
+                <th class="head">Last Name</th>
+                <th class="head">Full Name</th>
+            </tr>
+        </tbody>
+        {% for i in users%}
+            <tr>
+                <td class="data">{{i['first_name']}}</td>
+                <td class="data">{{i['last_name']}}</td>
+                <td class="data">{{i['first_name']}} {{i['last_name']}}</td>
+            </tr>
+        {%endfor%}
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
