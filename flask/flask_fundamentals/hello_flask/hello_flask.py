@@ -12,9 +12,9 @@ def sayflask():
 @app.route('/say/<name>')
 def sayvariable(name):
     return "helloooo"+ ": "+name
-@app.route('/repeat/<num>/<word>')
+@app.route('/repeat/<int:num>/<word>')
 def repeate(num, word):
-    return (word + "<br>")*int(num)
+    return (word + "<br>")*(num)
 
 
 

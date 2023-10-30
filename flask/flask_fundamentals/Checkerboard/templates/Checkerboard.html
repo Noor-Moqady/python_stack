@@ -8,19 +8,16 @@
 </head>
 <body>
 <div> 
-{%for j in range (y)%}
+{%for i in range (x)%}
     <div>
-        {%for i in range (x)%}        
+        {%for j in range (y)%} 
+        {% if (i%2 == 0 and j%2 ==0) or (i%2 != 0 and j%2 !=0): %}       
         <button class="red"></button>
+        {%else:%}
         <button class="black"></button>
+        {%endif%}
         {%endfor%}
     </div>
-    <div>
-        {%for i in range (x)%}        
-        <button class="black"></button>
-        <button class="red"></button>
-        {%endfor%}
-</div>
 {%endfor%}
 </div>         
     
