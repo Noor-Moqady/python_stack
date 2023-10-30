@@ -18,5 +18,6 @@ def result():
 @app.route('/result2')
 def result2():
     return render_template('submit_info.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
