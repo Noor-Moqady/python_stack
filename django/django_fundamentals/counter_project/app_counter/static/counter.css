@@ -1,0 +1,15 @@
+body{
+    text-align: center;
+}
+.button{
+    margin: 2%;
+    height:40px;
+    width: 120px;
+    background-color: #9fc5f8;
+    font-weight: bold;
+    box-shadow: 4px 4px 2px 1px black;
+    color: white;
+}
+.count{
+    color: blue;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'counter.css' %}">
+</head>
+<body>
+    <h1 class="count">Counter</h1>
+    <h3 name=" count" class="count">{{request.session.count}} Times</h3>
+    <form action="/visits">
+        <input type="submit" value="plus 1" class="button">
+    </form>
+    <form action="/addcount">
+        <input type="submit" value="plus 2" class="button">
+    </form>
+    <form action="/reset">
+    <input type="submit" value="reset" class="button">
+    </form>
+    <form action="/delete">
+        <input type="submit" value="delete" class="button">
+    </form>
+</body>
+</html>
