@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Dojo_Survey.css' %}">
+</head>
+<body>
+
+    <form  method="post" action="/handel" class="card">
+        {% csrf_token %}
+        <div class="row"> 
+            <label class="left1">Your Name:</label>
+            <input  type="text" name="name" placeholder="Your name...">
+        </div>
+        <div class="row">
+            <label class="left2">Dojo Location: </label>
+                <select name="Dojo Location" class="left2">
+                    <option value="San Jose">San Jose</option>
+                    <option value="California">California</option>
+                </select>
+        </div>
+        <div class="row">
+            <label class="left3">Favorite Languge: </label>
+                <select name="favorite language" class="left3">
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML">HTML</option>
+                </select>
+        </div>
+            
+        <div class="row">
+            <label>Comment (optional): </label><br>
+            <textarea name="comment" cols="30" rows="3" class=""></textarea>
+        </div> 
+        <div class="row">
+            <label>Gender Identity: </label><br>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="femal">Female</label>
+        </div>
+        <div class="row">
+            <input type="checkbox" name="email_updates" id="offers" checked >
+            <label  for="offers">I like to receive periodic email updates</label>
+        </div> 
+        <input type="submit" value="Button" name="submit" class="button">
+    </form>
+        
+    
+</body>
+</html>

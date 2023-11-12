@@ -1,0 +1,31 @@
+.card{
+    padding: 40px;
+    border: black solid 2px;
+    margin: 5% 20%;
+}
+
+.button{
+    height:30px;
+    width: 100px;
+    background-color: #76a5af;
+    font-weight: bold;
+    box-shadow: 4px 4px 2px 1px black;
+    color: white;
+}
+
+.inputform{
+    width: 160px;
+}
+.left1{
+    margin-right: 4.5%;
+}
+.row{
+    margin-bottom: 2%;
+}
+.left2{
+    margin-right: 2%;
+    width: 175px;
+}
+.left3{
+    width: 170px;
+}

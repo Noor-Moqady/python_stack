@@ -10,7 +10,7 @@ Activate your environment:
 ------------------------------------------------------------------
 | Mac/Linux: | source djangoPy3Env/bin/activate                         
 ------------------------------------------------------------------
-| Windows (command prompt): | call djangoPy3Env\Scripts\activate       
+| Windows (command prompt): | 1.  cd Documents\python_stack\django  2.  call djangopy3Env\Scripts\activate       
 ------------------------------------------------------------------
 | Windows (git bash) : | source djangoPy3Env/Scripts/activate         
 ------------------------------------------------------------------
@@ -25,13 +25,38 @@ Creating a Django Project:
 django_intro> django-admin startproject your_project_name_here
 
 
+Creating a Django APPs:
+your_project_name_here> python manage.py startapp your_app_name_here
+
+
 Run Server:
 django_intro> cd your_project_name_here
 your_project_name_here> python manage.py runserver
 
 
-Creating a Django APPs:
-your_project_name_here> python manage.py startapp your_app_name_here
+ADD static file to the HTML files in Django projects:
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Index</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+      <script src="{% static 'js/script.js' %}"></script>
+    </head>
+    <body>
+    	<img src="{% static 'images/image.jpg' %}" />
+    </body>
+
+
+TO RUN PROJECT WITH SESSIONS INSIDE :
+
+(djangoPy3Env) project_name> python manage.py migrate
+
+
+
+
 
 
 
