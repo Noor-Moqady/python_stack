@@ -1,0 +1,39 @@
+.submit{
+    
+    box-shadow: 4px 4px 2px 1px black;
+    margin-left: 40%;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    
+}
+body{
+    margin: 5% 30%;
+    font-family: cursive;
+}
+p{
+    padding: 3%;
+    width: 50%;
+}
+.red, .green{
+    color: white;
+    width: 60%;
+    margin-left: 20%;
+   
+    
+}
+.p_green{
+width: 100%;
+margin-left: 2%;
+
+}
+
+.name{
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+.guess{
+    margin-left: 40%;   
+}
+.first{
+    margin-left: 20%;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'great_number.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h3>I am thinking of a number between 1 and 100</h3>
+    <h3>Take a guess!</h3>
+    
+    {% if 'guess' not in request.session or not request.session.win %}
+        {% if request.session.attempts == 5 %}
+        <form action="/reset">
+            <p style="background-color: red" class="red">You lose</p>
+            <input type="submit" value="Play again!" class="submit">
+        </form>
+            
+        {%else%}
+        <form method="POST" action="/guess">
+        {% csrf_token %}
+            {%if 'guess' not in request.session%}
+                <p class="first">{{request.session.message}}</p>
+            {%else%}
+            <p style="background-color: red" class="red"> Too {{request.session.message}} try again!</p>
+            {%endif%}
+            <input type="number" name="guess" class="guess">
+            <div>
+            <input type="submit" value="Submit" class="submit">
+            </div>
+        </form>
+        {%endif%}
+    {%else%}
+        <div style="background-color: green" class="green">
+            <form method="POST" action="/win_show">
+                {% csrf_token %}
+                <p class="p_green" name="message">{{request.session.message}}</p>
+                <label for="name" class="name">Enter your name</label>
+                <input type="text" name="win_name">
+                <input type="submit" value="show!" class="submit">
+            </form>
+            <form action="/reset">
+                <input type="submit" value="Play again!" class="submit">
+            </form>
+        </div>
+    {%endif%}
+
+</body>
+</html>
