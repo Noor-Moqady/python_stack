@@ -54,6 +54,16 @@ TO RUN PROJECT WITH SESSIONS INSIDE :
 
 (djangoPy3Env) project_name> python manage.py migrate
 
+Migrations:
+
+  > python manage.py makemigrations
+  > python manage.py migrate
+
+
+Run shell
+python manage.py shell
+
+
 
 
 
