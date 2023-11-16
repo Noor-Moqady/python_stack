@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user_templates.css' %}">
+</head>
+<body>
+    <table class="table" id="customers">
+         <th>ID</th>
+         <th>First Name</th>
+         <th>Last Name</th>
+         <th>Email Address</th>
+         <th>Age</th>
+        {%for user in allusers%}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email_adress}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+<hr>
+    <form  method="POST" action="/handel" class="card">
+        {% csrf_token %}
+        <div> 
+            <div class="first_row">
+                <div>
+                    <label>First Name:</label>
+                    <input  type="text" name="firstname" placeholder="First name...">
+                </div>
+                <div  class="lastname">
+                    <label>Last Name:</label>
+                    <input  type="text" name="lastname" placeholder="Last name...">
+                </div>
+            </div>
+            <div class="second_row">
+                    <label class="label_email">Email:</label>
+                    <input class="input_email" type="email" name="email" placeholder="Email@...">
+                    <label class="label_age">Age:</label>
+                    <input  class="input_age" type="text" name="age" placeholder="Age..."  >
+            </div>
+            <div class="submit">
+                <input type="submit" value="Add" name="submit" class="button">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
