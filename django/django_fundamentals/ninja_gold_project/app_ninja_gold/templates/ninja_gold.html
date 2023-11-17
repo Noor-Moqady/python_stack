@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ninja_gold.css' %}">
+</head>
+<body>
+    <h2 class="h2">Your Gold {{gold}}</h2>
+
+    {% if request.session.messeage == 'You Lost' %}
+    <h2 class="h2 red">{{request.session.messeage}}</h2>
+    {%else%}
+    <h2 class="h2 green">{{request.session.messeage}}</h2>
+    {%endif%}
+
+    
+    <div class="cont">
+        <form action="/process_money" method="POST">
+        {% csrf_token %}
+            <input type="hidden" name="which_form" value="farm">
+            <h2>Farm</h2>
+            <h3>(earns 2-5 gold)</h3>
+            <input type="submit" value="Find Gold!" class="button">  
+        </form>
+
+        <form action="/process_money" method="POST">
+        {% csrf_token %}
+            <input type="hidden" name="which_form" value="cave">
+            <h2>Cave</h2>
+            <h3>(earns 5-10 gold)</h3>
+            <input type="submit" value="Find Gold!" class="button">  
+        </form>
+
+
+        <form action="/process_money" method="POST">
+        {% csrf_token %}
+            <input type="hidden" name="which_form" value="house">
+            <h2>House</h2>
+            <h3>(earns 10-20 gold)</h3>
+            <input type="submit" value="Find Gold!" class="button">  
+        </form>
+
+        <form action="/process_money" method="POST">
+        {% csrf_token %}
+            <input type="hidden" name="which_form" value="quest">
+            <h2>Quest</h2>
+            <h3>(earns/takes -50-50 gold)</h3>
+            <input type="submit" value="Find Gold!" class="button">
+        </form>
+    </div>
+    <h2 class="h2">Activites</h2>
+    <form action="/process_money" method="POST" class="activites">
+        {% csrf_token %}
+        <input type="hidden" name="which_form" value="activites">
+        <div>
+            {% for activity in activities %}
+                {% if "Lost" in activity%}
+                <p class="red">{{ activity }}</p>
+                {%else%}
+                <p class="green">{{ activity }}</p>
+                {%endif%}
+            {% endfor %}
+        </div>
+        
+    </form>
+    <a class="h2" href="/reset">Reset</a>
+    
+</body>
+</html>

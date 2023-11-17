@@ -1,0 +1,36 @@
+.cont{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+}
+form{
+    border: black solid 2px;
+    padding: 2%;
+    text-align: center;
+}
+.button{
+    box-shadow: 4px 4px 2px 1px black;
+    font-weight: bold;
+}
+*{
+font-family: cursive;
+}
+.h2{
+margin-left: 4%;
+}
+.activites{
+    margin-left: 4%;
+    margin-right: 4%;
+    text-align: start;
+    font-weight: bold;
+    overflow:scroll;
+    height: 200px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
