@@ -1,0 +1,85 @@
+django-admin startproject user_shell_project
+
+python manage.py startapp app_user_shell
+
+call djangopy3Env\Scripts\activate
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\dojo_ninja_shell_project>python manage.py runserver
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\dojo_ninja_shell_project>python manage.py makemigrations
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\dojo_ninja_shell_project>python manage.py migrate
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\dojo_ninja_shell_project>python manage.py shell
+
+>>>>>>>>>>>>>>>>>>>>> from app_dojo_ninja_shell.models import *
+
+
+
+>>>>>>>>>>>>>>create the FIRST table in one to many relation this table did not have the ForeignKey>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> Dojo.objects.create(name="noor", city = "ramallah",state = "palestine")
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name="rana", city = "ramallah",state = "palestine")
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name="ali", city = "ramallah",state = "palestine")
+<Dojo: Dojo object (3)>
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: Dojo object (1)>, <Dojo: Dojo object (2)>, <Dojo: Dojo object (3)>]>
+
+
+>>> Dojo.objects.all().values()
+<QuerySet [{'id': 1, 'name': 'noor', 'city': 'ramallah', 'state': 'palestine', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 16, 77822, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 16, 77822, tzinfo=<UTC>)}, {'id': 2, 'name': 'rana', 'city': 'ramallah', 'state': 'palestine', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 39, 158028, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 39, 158028, tzinfo=<UTC>)}, {'id': 3, 'name': 'ali', 'city': 'ramallah', 'state': 'palestine', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 48, 840498, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 48, 840498, tzinfo=<UTC>)}]>
+>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+first_dojo= Dojo.objects.get(id=1)
+second_dojo= Dojo.objects.get(id=2)
+third_dojo= Dojo.objects.get(id=3)  
+
+>>>>>>>>>>>>>>create the SECOND table in one to many relation this table HAVE the ForeignKey>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>> assign 3 ninjas to the first_dojo RECORD >>>>>>>>>>>>
+Ninja.objects.create(fisrt_name="Ninja1", last_name="Ninja2", dojo=first_dojo)
+Ninja.objects.create(first_name="Ninja2", last_name="Ninja2", dojo=first_dojo)
+Ninja.objects.create(first_name="Ninja3", last_name="Ninja3", dojo=first_dojo)
+
+>>>>>>>> assign 3 ninjas to the second_dojo RECORD >>>>>>>>>>>>
+Ninja.objects.create(first_name="Ninja2", last_name="Ninja2", dojo=second_dojo)
+Ninja.objects.create(first_name="Ninja3", last_name="Ninja3", dojo=second_dojo)
+Ninja.objects.create(first_name="Ninja1", last_name="Ninja1", dojo=second_dojo)
+
+>>>>>>>> assign 3 ninjas to the third_dojo RECORD >>>>>>>>>>>>
+Ninja.objects.create(first_name="Ninja3", last_name="Ninja3", dojo=third_dojo)
+Ninja.objects.create(first_name="Ninja2", last_name="Ninja2", dojo=third_dojo)
+Ninja.objects.create(first_name="Ninja1", last_name="Ninja1", dojo=third_dojo)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> for ninja in third_dojo.ninjas.all():
+...     print(ninja.first_name)
+...
+Ninja3
+Ninja2
+Ninja1
+>>>
+>>>
+
+
+
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+from app_dojo_ninja_shell.models import *
+
+>>> from app_dojo_ninja_shell.models import *
+>>> Dojo.objects.create(name="noor", city = "ramallah",state = "palestine", desc="ooooo")
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.all().values()
+<QuerySet [{'id': 1, 'name': 'noor', 'city': 'ramallah', 'state': 'palestine', 'desc': 'old dojo', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 16, 77822, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 16, 77822, tzinfo=<UTC>)}, {'id': 2, 'name': 'rana', 'city': 'ramallah', 'state': 'palestine', 'desc': 'old dojo', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 39, 158028, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 39, 158028, tzinfo=<UTC>)}, {'id': 3, 'name': 'ali', 'city': 'ramallah', 'state': 'palestine', 'desc': 'old dojo', 'created_at': datetime.datetime(2023, 11, 19, 10, 48, 48, 840498, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 10, 48, 48, 840498, tzinfo=<UTC>)}, {'id': 4, 'name': 'noor', 'city': 'ramallah', 'state': 'palestine', 'desc': 'old dojo', 'created_at': datetime.datetime(2023, 11, 19, 14, 22, 39, 723267, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 14, 22, 39, 723267, tzinfo=<UTC>)}, {'id': 5, 'name': 'noor', 'city': 'ramallah', 'state': 'palestine', 'desc': 'ooooo', 'created_at': datetime.datetime(2023, 11, 19, 14, 24, 59, 538712, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 14, 24, 59, 538712, tzinfo=<UTC>)}]>
+
+
+
+
+
+
+
+
