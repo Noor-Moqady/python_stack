@@ -1,0 +1,178 @@
+django-admin startproject books_authors_shell_project
+
+python manage.py startapp app_books_authors_shell
+
+call djangopy3Env\Scripts\activate
+
+C:\Users\pc\Documents\python_stack\django>call djangopy3Env\Scripts\activate
+
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py runserver
+
+C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py makemigrations
+
+C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py migrate
+
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py shell
+
+from app_books_authors_shell.models import *
+
+>>> from app_books_authors_shell.models import *
+>>> Book.objects.create(title = "c sharp", desc="dddddddddddd")
+<Book: Book object (1)>
+>>> Book.objects.create(title = "java", desc="jjjjjjjjjjjjjj")
+<Book: Book object (2)>
+>>> Book.objects.create(title = "python", desc="pppppppppppppppppppp")
+<Book: Book object (3)>
+>>> Book.objects.create(title = "php", desc="phhhhhhhhhhppp")
+<Book: Book object (4)>
+>>> Book.objects.create(title = "ruby", desc="rrrrrrrrrrrrrrrrr")
+<Book: Book object (5)>
+
+
+
+>>> Author.objects.create(first_name = "jane", last_name="austen")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name = "emily", last_name="dickinson")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name = "fyodor", last_name="dostoevsky")
+<Author: Author object (3)>
+>>> Author.objects.create(first_name = "william", last_name="shakespeare")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name = "lau", last_name="tzu")
+<Author: Author object (5)>
+>>>
+
+
+>>>>>>>>>>>>>>ADD NEW FIELD IN ALREADY CREATED TABLE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py makemigrations
+Migrations for 'app_books_authors_shell':
+  app_books_authors_shell\migrations\0003_author_notes.py
+    - Add field notes to author
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, app_books_authors_shell, auth, contenttypes, sessions
+Running migrations:
+  Applying app_books_authors_shell.0003_author_notes... OK
+
+(djangopy3Env) C:\Users\pc\Documents\python_stack\django\django_fullstack\books_authors_shell_project>python manage.py shell
+
+
+
+
+>>> book1=Book.objects.get(id=1)
+>>> book1.title = "c#"
+>>> book1.save()
+>>> Book.objects.all().values()
+<QuerySet [{'id': 1, 'title': 'c#', 'desc': 'dddddddddddd', 'created_at': datetime.datetime(2023, 11, 19, 20, 29, 42, 227453, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 53, 17, 394340, tzinfo=<UTC>)}, {'id': 2, 'title': 'java', 'desc': 'jjjjjjjjjjjjjj', 'created_at': datetime.datetime(2023, 11, 19, 20, 30, 25, 617184, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 30, 25, 617184, tzinfo=<UTC>)}, {'id': 3, 'title': 'python', 'desc': 'pppppppppppppppppppp', 'created_at': datetime.datetime(2023, 11, 19, 20, 30, 49, 538203, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 30, 49, 538203, tzinfo=<UTC>)}, {'id': 4, 'title': 'php', 'desc': 'phhhhhhhhhhppp', 'created_at': datetime.datetime(2023, 11, 19, 20, 31, 10, 303515, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 31, 10, 303515, tzinfo=<UTC>)}, {'id': 5, 'title': 'ruby', 'desc': 'rrrrrrrrrrrrrrrrr', 'created_at': datetime.datetime(2023, 11, 19, 20, 31, 35, 352107, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 31, 35, 352107, tzinfo=<UTC>)}]>
+>>>
+
+
+>>> author4= Author.objects.get(id=4)
+>>> author4.first_name="Bill"
+>>> author4.save()
+>>> Author.objects.all().values()
+<QuerySet [{'id': 1, 'first_name': 'jane', 'last_name': 'austen', 'notes': 'nooooootes', 'created_at': datetime.datetime(2023, 11, 19, 20, 33, 34, 756554, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 33, 34, 756554, tzinfo=<UTC>)}, {'id': 2, 'first_name': 'emily', 'last_name': 'dickinson', 'notes': 'nooooootes', 'created_at': datetime.datetime(2023, 11, 19, 20, 34, 1, 837645, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 34, 1, 837645, tzinfo=<UTC>)}, {'id': 3, 'first_name': 'fyodor', 'last_name': 'dostoevsky', 'notes': 'nooooootes', 'created_at': datetime.datetime(2023, 11, 19, 20, 34, 28, 272309, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 34, 28, 272309, tzinfo=<UTC>)}, {'id': 4, 'first_name': 'Bill', 'last_name': 'shakespeare', 'notes': 'nooooootes', 'created_at': datetime.datetime(2023, 11, 19, 20, 35, 2, 871293, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 22, 16, 6, 142814, tzinfo=<UTC>)}, {'id': 5, 'first_name': 'lau', 'last_name': 'tzu', 'notes': 'nooooootes', 'created_at': datetime.datetime(2023, 11, 19, 20, 35, 24, 975097, tzinfo=<UTC>), 'updated_at': datetime.datetime(2023, 11, 19, 20, 35, 24, 975097, tzinfo=<UTC>)}]>
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Assign the first author to the first 2 books>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>book1=Book.objects.get(id=1)
+>>> book2=Book.objects.get(id=2)
+>>> author1=Author.objects.get(id=1)
+>>> author1.books.add(book1)
+>>> author1.books.add(book2)
+>>> author1.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
+>>>
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Assign the second author to the first 3 books>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>book1=Book.objects.get(id=1)
+>>> book2=Book.objects.get(id=2)
+>>> book3=Book.objects.get(id=3)
+>>> author2=Author.objects.get(id=2)
+>>> author2.books.add(book1)
+>>> author2.books.add(book2)
+>>> author2.books.add(book3)
+>>> author2.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
+>>>
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Assign the third author to the first 4 books>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> book1=Book.objects.get(id=1)
+>>> book2=Book.objects.get(id=2)
+>>> book3=Book.objects.get(id=3)
+>>> book4=Book.objects.get(id=4)
+>>> author3=Author.objects.get(id=3)
+>>> author3.books.add(book1)
+>>> author3.books.add(book2)
+>>> author3.books.add(book3)
+>>> author3.books.add(book4)
+>>> author3.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>>
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Assign the fourth author to the first 5 books (or in other words, all the books)>>>>>>>>>>>>>>>>>>>>>>
+>>> book1=Book.objects.get(id=1)
+>>> book2=Book.objects.get(id=2)
+>>> book3=Book.objects.get(id=3)
+>>> book4=Book.objects.get(id=4)
+>>> book5=Book.objects.get(id=5)
+>>> author4= Author.objects.get(id=4)
+>>> author4.books.add(book1)
+>>> author4.books.add(book2)
+>>> author4.books.add(book3)
+>>> author4.books.add(book4)
+>>> author4.books.add(book5)
+>>> author4.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
+>>>
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Retrieve all the authors for the 3rd book>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> book3.authors.all()
+<QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+>>>
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Remove the first author of the 3rd book>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> book3.authors.remove(author2)
+>>> book3.authors.all()
+<QuerySet [<Author: Author object (3)>, <Author: Author object (4)>]>
+>>>
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Add the 5th author as one of the authors of the 2nd book>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> author5=Author.objects.get(id=5)
+>>> book2.authors.add(author5)
+>>> book2.authors.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>, <Author: Author object (5)>]>
+>>>
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Find all the books that the 3rd author is part of>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> author3.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>>
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query: Find all the authors that contributed to the 5th book>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>> book5.authors.all()
+<QuerySet [<Author: Author object (4)>]>
+>>>
+
+

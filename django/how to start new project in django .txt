@@ -63,6 +63,8 @@ Migrations:
 Run shell
 python manage.py shell
 
+from app_dojo_ninja_shell.models import *
+
 
 
 
