@@ -5,3 +5,9 @@
 *{
     font-family: cursive;
 }
+select{
+    width: 202px;
+}
+.dojo{
+    padding-right: 60px;
+}

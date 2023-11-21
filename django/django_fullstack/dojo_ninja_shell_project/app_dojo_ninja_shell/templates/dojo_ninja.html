@@ -43,7 +43,7 @@
                     <td><input type="text" name="lname"></td>
                 </tr>
                 <tr>
-                    <th>Dojo</th>
+                    <th class="dojo">Dojo</th>
                     <td>
                         <select name="dojoselesct">
                         {%for dojo in alldojos%}
@@ -59,11 +59,18 @@
         </form>
     </div>
     <hr>
+    <!-- ONE TO MANY RELASHION -->
     <div class="main">
         <div>
+            
             <h1>All the Dojos</h1>
             {% for dojo in alldojos %}
-            <h3>{{dojo.name}}</h3>
+            <form action="/delete" method="POST">
+                {%csrf_token%}
+            <h3>Dojo name: {{dojo.name}}<input type="submit" value="Delete"></h3>
+            <input type="hidden" value="{{dojo.id}}" name="dojo_id">
+            <h5>count of ninjas:{{ dojo.ninjas.count }}</h5>
+            </form>
             <ul>
                 {%for ninja in dojo.ninjas.all %}
                 <li>{{ninja.first_name}}</li>
