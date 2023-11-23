@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read (One)</title>
+    {% load static %}
+      <link rel="stylesheet" href="{% static 'show.css' %}">
+</head>
+<body class="body_for_tabel">
+    <a href="/shows" class="go_back">Go Back</a>
+    <h1>TV Show {{specific_show.id}}</h1>
+    <h3>Title: {{specific_show.title}}</h3>
+    <h3>Network: {{specific_show.network}}</h3>
+    <h3>Release Date: {{specific_show.release_date}}</h3>
+    <h3>Description: {{specific_show.desc}}</h3>
+    <div  class="update_date">
+    <h3>Last Update: {{specific_show.updated_at}}</h3>
+    <div><a href="/shows/{{specific_show.id}}/edit">Edit</a>  |  <a href="/delete/{{specific_show.id}}">Delete</a></div>
+    </div>
+
+</body>
+</html>
