@@ -8,6 +8,15 @@
       <link rel="stylesheet" href="{% static 'show.css' %}">
 </head>
 <body class="new_show">
+<!-- VALIDATIONPART ###########################################################################-->
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+<!-- VALIDATIONPART ###########################################################################-->
     <a href="/shows" class="go_back">Go Back</a>
     <h1>Add a New Show</h1>
     <form action="/shows/new" method="POST">

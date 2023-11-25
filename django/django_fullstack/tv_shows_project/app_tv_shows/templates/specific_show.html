@@ -12,7 +12,7 @@
     <h1>TV Show {{specific_show.id}}</h1>
     <h3>Title: {{specific_show.title}}</h3>
     <h3>Network: {{specific_show.network}}</h3>
-    <h3>Release Date: {{specific_show.release_date}}</h3>
+    <h3>Release Date: {{specific_show.release_date| date:'M d, Y'}}</h3>
     <h3>Description: {{specific_show.desc}}</h3>
     <div  class="update_date">
     <h3>Last Update: {{specific_show.updated_at}}</h3>

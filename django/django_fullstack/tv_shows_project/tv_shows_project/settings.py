@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+# YOU NEEEEEEED TO ADDDDDD THIS PART TO DISPLAY THE TIME IN SPECIFIC WAY######################################################################################################################
 DATETIME_INPUT_FORMATS=[
 '%Y-%M-%D %H:%M:%S',
 '%Y-%M%D %H:%M:%S.%f',
