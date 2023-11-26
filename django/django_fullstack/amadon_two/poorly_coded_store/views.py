@@ -17,7 +17,10 @@ def checkout(request, id):
         'specific_product': Product.objects.get(id=id),
         'allorders': Order.objects.all(),
         'total_amount_charged': total_amount_charged,
-        'total_amount_quantitiy': total_amount_quantitiy
+        'total_amount_quantitiy': total_amount_quantitiy,
+        
+        'specific_order_quantity_ordered':request.session['specific_order_quantity'],
+        'specific_order_total_price':request.session['specific_order_total_price']
         }
         
         return render(request,"checkout.html", context)
@@ -26,8 +29,18 @@ def checkout(request, id):
         quantity_from_form = int(request.POST["quantity"])
         price_from_form = float(specific_product.price)
         total_charge = (quantity_from_form) * (price_from_form)
+
         print("Charging credit card...")
         specific_order=Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
         
+        request.session['specific_order_quantity']=specific_order.quantity_ordered
+        request.session['specific_order_total_price']=specific_order.total_price
+        
         return redirect('/checkout/'+str(id))
     
+
+def delete(request):
+    allorders=Order.objects.all()
+    for order in allorders:
+        order.delete()
+    return redirect("/")

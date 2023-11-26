@@ -9,7 +9,7 @@
 <body>
     <h3>Thank you for your business!</h3>
     <p>We charged your credit card for ${{specific_product.price}}</p>
-    <p>You have ordered #{{specific_order.quantity_ordered}} items so far and spent $${{specific_order.total_price}} with Amadon.com!</p>
+    <p>You have ordered #{{specific_order_quantity_ordered}} items so far and spent $${{specific_order_total_price}} with Amadon.com!</p>
     <p><a href="/">Go Back</a></p>
 
     <!-- {%for order in allorders%}
@@ -17,8 +17,8 @@
     <p>total_price:{{order.total_price}}</p>
     {%endfor%} -->
 
-    <p>Total amount of price: ${{ total_amount_charged }}</p>
-    <p>Total amount of quantity: #{{ total_amount_quantitiy}}</p>
+    <p>Total amount of price you ordered until know: ${{ total_amount_charged }}</p>
+    <p>Total amount of quantity you ordered until know: #{{ total_amount_quantitiy}}</p>
     
 
 </body>

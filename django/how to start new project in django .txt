@@ -77,5 +77,5 @@ from app_dojo_ninja_shell.models import *
 
 
 
-
-
+IMPORTANT LINK FOR TIME:
+https://forum.djangoproject.com/t/how-to-set-data-calendar-widget-for-datefield-and-datetimefield-with-format-day-month-year-dd-mm-yyyy/7243/3
