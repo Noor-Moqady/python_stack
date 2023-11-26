@@ -18,9 +18,9 @@ def checkout(request, id):
         'allorders': Order.objects.all(),
         'total_amount_charged': total_amount_charged,
         'total_amount_quantitiy': total_amount_quantitiy,
-        
+
         'specific_order_quantity_ordered':request.session['specific_order_quantity'],
-        'specific_order_total_price':request.session['specific_order_total_price']
+        'specific_order_total_price':request.session['specific_order_total_price'],
         }
         
         return render(request,"checkout.html", context)

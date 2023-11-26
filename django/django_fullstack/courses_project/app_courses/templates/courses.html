@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'courses.css' %}">
+</head>
+<body>
+<!-- VALIDATIONPART ###########################################################################-->
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+<!-- VALIDATIONPART ###########################################################################-->
+    <h1>Add a new course</h1>
+    <form action="/" method="POST">
+        {%csrf_token%}
+        <table>
+            <tr>
+                <th><label for="">Name:</label></th>
+                <td><input type="text" name="name" class="name"></td>
+            </tr>
+            <tr>
+                <th><label for="">Description</label></th>
+                <td><textarea name="desc" id="" cols="74" rows="10"></textarea></td>
+            </tr>
+        </table>
+        <div>
+        <input type="submit" value="create" class="button">
+        </div>
+    </form>
+    <h1>Courses</h1>
+    <table class="table" id="customers">
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in allcourses%}
+        <tr>
+            <td>{{course.name}}</td>
+            <td>{{course.ddesc}}</td>
+            <td>{{course.created_at| date:'M d, Y'}}</td>
+            <td class="action"><a href="/courses/destroy/{{course.id}}">remove</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>
+
