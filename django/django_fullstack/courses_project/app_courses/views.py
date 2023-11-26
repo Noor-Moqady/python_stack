@@ -16,12 +16,14 @@ def show_course(request):
                 messages.error(request, value)
             return redirect('/')
         else:
-            show=Course.objects.create(name=request.POST['name'],desc=request.POST['desc'])
+            # show=Course.objects.create(name=request.POST['name'],desc=request.POST['desc'])
+            show=Course.objects.create(name=request.POST['name'],desc=Description.objects.create(content=request.POST['desc']))
         return redirect('/')
 
 def course_specificone(request, id):
     context={
-        'specific_course': Course.objects.get(id=id)
+        'specific_course': Course.objects.get(id=id),
+        'specific_desc': Description.objects.get(id=id)
         
     }
     return render(request,"specific_course.html", context)

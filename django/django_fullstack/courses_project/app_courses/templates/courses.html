@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Courses</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'courses.css' %}">
 </head>
@@ -45,7 +45,9 @@
         {% for course in allcourses%}
         <tr>
             <td>{{course.name}}</td>
-            <td>{{course.ddesc}}</td>
+            {% for desc in allcourses%}
+            <td>{{desc.desc}}</td>
+            {%endfor%}
             <td>{{course.created_at| date:'M d, Y'}}</td>
             <td class="action"><a href="/courses/destroy/{{course.id}}">remove</a></td>
         </tr>

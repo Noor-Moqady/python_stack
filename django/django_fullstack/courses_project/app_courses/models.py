@@ -13,10 +13,12 @@ class CourseManager(models.Manager):
             errors["title"] = "A course with this name already exists"
         return errors
 
+class Description(models.Model):
+    content = models.TextField()
 
 class Course(models.Model):
     name = models.CharField(max_length=225)
-    desc = models.TextField()
+    desc = models.OneToOneField(Description, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = CourseManager()

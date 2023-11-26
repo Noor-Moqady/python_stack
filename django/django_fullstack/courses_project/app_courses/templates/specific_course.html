@@ -10,7 +10,7 @@
 <body>
     <h1>Are you sure you want to delete the following course ?</h1>
     <h3>Name: {{specific_course.name}}</h3>
-    <h3>Description: {{specific_course.desc}}</h3>
+    <h3>Description: {{specific_desc.content}}</h3>
     <div>
         <form action="/no" method="POST">
             {%csrf_token%}
