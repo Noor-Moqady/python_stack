@@ -45,9 +45,7 @@
         {% for course in allcourses%}
         <tr>
             <td>{{course.name}}</td>
-            {% for desc in allcourses%}
-            <td>{{desc.desc}}</td>
-            {%endfor%}
+            <td>{{course.desc.content}}</td>
             <td>{{course.created_at| date:'M d, Y'}}</td>
             <td class="action"><a href="/courses/destroy/{{course.id}}">remove</a></td>
         </tr>

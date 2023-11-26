@@ -5,7 +5,8 @@ from.models import *
 def show_course(request):
     if request.method == 'GET':
         context={
-        'allcourses': Course.objects.all()
+        'allcourses': Course.objects.all(),
+        'alldesc': Description.objects.all()
         }
         return render(request,"courses.html", context)
     if request.method == 'POST':
