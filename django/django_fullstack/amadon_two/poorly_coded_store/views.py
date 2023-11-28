@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Order, Product
 
 def index(request):
+    # request.session['allamount'] =0
     context = {
         "all_products": Product.objects.all()
     }
@@ -18,9 +19,6 @@ def checkout(request, id):
         'allorders': Order.objects.all(),
         'total_amount_charged': total_amount_charged,
         'total_amount_quantitiy': total_amount_quantitiy,
-
-        'specific_order_quantity_ordered':request.session['specific_order_quantity'],
-        'specific_order_total_price':request.session['specific_order_total_price'],
         }
         
         return render(request,"checkout.html", context)
@@ -32,7 +30,8 @@ def checkout(request, id):
 
         print("Charging credit card...")
         specific_order=Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
-        
+
+        # request.session['allamount']+=total_charge
         request.session['specific_order_quantity']=specific_order.quantity_ordered
         request.session['specific_order_total_price']=specific_order.total_price
         

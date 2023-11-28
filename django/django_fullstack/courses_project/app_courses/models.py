@@ -9,8 +9,8 @@ class CourseManager(models.Manager):
             errors["name"] = "Name should be at least 5 characters"
         if len(postData['desc']) < 15:
             errors["desc"] = "Description should be at least 15 characters"
-        if Course.objects.filter(name=postData['name']).exists():
-            errors["title"] = "A course with this name already exists"
+        # if Course.objects.filter(name=postData['name']).exists():
+        #     errors["title"] = "A course with this name already exists"
         return errors
 
 class Description(models.Model):

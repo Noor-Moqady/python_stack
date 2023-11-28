@@ -19,7 +19,10 @@ def shows_form(request):
                 messages.error(request, value)
             return redirect('/shows/new')
         else:
-            show=Show.objects.create(title=request.POST['title'], network=request.POST['network'], release_date=request.POST['date'], desc=request.POST['desc'])
+            if request.POST['date'] != '':
+                show=Show.objects.create(title=request.POST['title'], network=request.POST['network'], release_date=request.POST['date'], desc=request.POST['desc'])
+            else:
+                show=Show.objects.create(title=request.POST['title'], network=request.POST['network'], desc=request.POST['desc'])
         return redirect('/shows/'+str(show.id))
 
 def shows_specificone(request, id):
