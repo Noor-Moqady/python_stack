@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_registration.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h2>Coding Dojo Wall</h2>
+        <div class="left_header"> 
+            <h3 class="welcome">Welcome, {{request.session.logged_user_firstname}}!</h1> 
+            <a href="/logout">Log Off</a>
+        </div>
+    </div>
+    {% for message in messages %}    
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>    
+    {% endfor %}
+    <hr>
+    <h3 class="left">Post a message</h3>
+    <form action="/addpost" method="POST">
+        {%csrf_token%}
+        <textarea name="message" id="" cols="150" rows="8" class="left"></textarea>
+        <input type="submit" value="Post a message" class="post">
+    </form>
+    <div class="left">
+        {% for message in allmessages %}
+        <div class="header2">
+        <h3>{{message.user.first_name}}<span>{{message.created_at}}</span></h3>
+        <form action="/delete" method="POST">
+            <input type="hidden" value="{{message.user.id}}" name="user_id">
+            <input type="hidden" value="{{message.id}}" name="message_id">
+            <input type="hidden" value="{{message.created_at}}" name="created_at">
+            <input type="submit" value="Delete">
+            {%csrf_token%}
+        </form>
+        </div>
+            <p>{{message.message}}</p>
+            <p class="left  red">comments:</p>
+            {% for comment in message.comments.all%}
+            <p class="left">{{comment.comment}}</p>
+            {%endfor%}
+            <form action="/addcomment" method="POST">
+                {%csrf_token%}
+                <input type="hidden" value="{{message.id}}" name="message_id">
+                <textarea name="comment" id="" cols="80" rows="2" class="left"></textarea>
+                <input type="submit" value="Post a comment" class="post_comment">
+            </form>
+        {%endfor%}
+    </div>
+</body>
+</html>

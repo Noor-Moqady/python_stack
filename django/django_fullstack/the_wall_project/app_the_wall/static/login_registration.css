@@ -1,0 +1,51 @@
+.login_page{
+    display: flex;
+    justify-content: space-around;
+}
+h3{
+    color: green;
+}
+.header, .left_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+hr{
+    margin-top: 0px;
+    height: 2px;
+    background-color: black;
+}
+.welcome{
+    margin-right: 80px;
+}
+.post{
+    box-shadow: 4px 4px 2px 1px black;
+    background-color: blue;
+    color: white;
+    margin-left: 79%;
+}
+.left{
+    margin-left: 10%;
+}
+.submit{
+    box-shadow: 4px 4px 2px 1px black;
+}
+span{
+    color: black;
+    font-size: small;
+    margin-left: 10px;
+}
+.post_comment{
+    box-shadow: 4px 4px 2px 1px black;
+    background-color:green;
+    color: white;
+    margin-left: 48%;
+}
+.red{
+    font-weight: bold;
+}
+.header2{
+    display: flex;
+    align-items: center;
+}
