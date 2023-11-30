@@ -84,9 +84,9 @@ def delete(request):
         message=Message.objects.get(id=int(request.POST['message_id']))
         message.delete()
         return redirect('/wall')
-    else:
-        messages.error(request,"You can delete just your own message")
-        return redirect('/wall')
+    # else:
+    #     messages.error(request,"You can delete just your own message")
+    #     return redirect('/wall')
 def addcomment(request):
     if request.method == 'GET':
         return render(request,"welcome.html")
