@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_registration.css' %}">
+</head>
+<body>
+    <h1>Success! Welcom, {{request.session.logged_user_firstname}}!</h1> 
+    <a href="/logout">Log Out</a>
+    <h3>Successfully {{request.session.registration}} {{request.session.login}}!</h3>
+</body>
+</html>
