@@ -1,0 +1,24 @@
+.login_page{
+    display: flex;
+    justify-content: space-around;
+}
+
+.left_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+hr{
+    margin-top: 0px;
+    height: 2px;
+    background-color: black;
+}
+.welcome{
+    margin-right: 80px;
+}
+.button{
+    box-shadow: 4px 4px 2px 1px black;
+    background-color: blue;
+    color: white;
+}

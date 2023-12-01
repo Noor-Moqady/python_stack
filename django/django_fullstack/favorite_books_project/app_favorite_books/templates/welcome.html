@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_registration.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="left_header"> 
+            <h3 class="welcome">Welcome, {{request.session.logged_user_firstname}}!</h1> 
+            <a href="/logout">Log Off</a>
+        </div>
+    </div>
+    <hr>
+    <!-- <h3>Successfully {{request.session.registration}} {{request.session.login}}!</h3> -->
+    <div class="main">
+        <form action="/addfavoritebooks" method="POST">
+            {%csrf_token%}
+            <h1>Add a Favorite Book</h1>
+            <table>
+                <tr>
+                    <th>Title:</th>
+                    <td><input type="text" name="title"></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td><textarea name="desc" id="" cols="30" rows="10"></textarea></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Add" class="button">
+            </div>
+        </form>
+        <div>
+
+            <h1>All Books</h1>
+            {% for book in allbooks%}
+            <a href="">{{book.title}}</a>
+            <p>(Added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+            <h4>{{book.desc}}</h4>
+            {% endfor %}
+            
+        </div>
+    </div>
+   
+</body>
+</html>

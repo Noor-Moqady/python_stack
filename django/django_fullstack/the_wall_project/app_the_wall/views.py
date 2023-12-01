@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from datetime import datetime,timedelta
 import bcrypt
+from django.utils import timezone
 from.models import *
 
 
@@ -80,13 +81,18 @@ def addpost(request):
         message=Message.objects.create(user=User.objects.get(id=request.session['logged_user_id']), message=request.POST['message'])
         return redirect('/wall')
 def delete(request):
-    # if request.session['logged_user_id'] == int(request.POST['user_id']) and datetime.now() - datetime.strptime(request.POST['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ") <= 30:
-        message=Message.objects.get(id=int(request.POST['message_id']))
-        message.delete()
-        return redirect('/wall')
-    # else:
-    #     messages.error(request,"You can delete just your own message")
-    #     return redirect('/wall')
+    message=Message.objects.get(id=int(request.POST['message_id']))
+    currentDate = timezone.now()
+    createdDate = message.created_at
+    result = (currentDate - createdDate).total_seconds()/60
+    if request.session['logged_user_id'] == int(request.POST['user_id']):
+        if result <= 30 :
+            message.delete()
+        else:
+            messages.error(request, "You can delete the messages you posted within 30 minutes only")
+    else:
+        messages.error(request,"You can delete just your own message")
+    return redirect('/wall')
 def addcomment(request):
     if request.method == 'GET':
         return render(request,"welcome.html")
