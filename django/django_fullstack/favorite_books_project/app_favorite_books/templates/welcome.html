@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <title>Welcome</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'login_registration.css' %}">
@@ -22,11 +22,11 @@
             <h1>Add a Favorite Book</h1>
             <table>
                 <tr>
-                    <th>Title:</th>
+                    <td>Title:</td>
                     <td><input type="text" name="title"></td>
                 </tr>
                 <tr>
-                    <th>Description:</th>
+                    <td>Description:</td>
                     <td><textarea name="desc" id="" cols="30" rows="10"></textarea></td>
                 </tr>
             </table>
@@ -35,14 +35,19 @@
             </div>
         </form>
         <div>
-
             <h1>All Books</h1>
             {% for book in allbooks%}
-            <a href="">{{book.title}}</a>
+            <a href="/books/{{book.id}}">{{book.title}}</a>
             <p>(Added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
             <h4>{{book.desc}}</h4>
-            {% endfor %}
-            
+                {% if book not in favorite_book%}
+                <a href="/addfav/{{book.id}}">Add to Favorite</a>
+                {%else%}
+                <p>This is on of your favorites</p>
+                {%endif%}
+            <hr>
+            {% endfor %} 
+              
         </div>
     </div>
    

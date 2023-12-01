@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_registration.css' %}">
+</head>
+{% if specific_book.uploaded_by.id == request.session.logged_user_id %}
+<body>
+     <!-- VALIDATIONPART ###########################################################################-->
+     {% if messages %}
+     <ul class="messages">    
+         {% for message in messages %}    
+             <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+         {% endfor %}
+     </ul>
+     {% endif %}
+ <!-- VALIDATIONPART ###########################################################################-->
+    <div class="header">
+        <div class="left_header"> 
+            <h3 class="welcome">Welcome, {{request.session.logged_user_firstname}}!</h1> 
+            <a href="/logout">Log Off</a>
+        </div>
+    </div>
+    <hr>
+    <div class="main">
+        <form action="/books/{{specific_book.id}}" method="POST">
+            {%csrf_token%}
+            <h1>Add a Favorite Book</h1>
+            <table>
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" name="title" value="{{specific_book.title}}"></td>
+                </tr>
+                <tr>
+                    <td>Added by:</td>
+                    <td>{{specific_book.uploaded_by.first_name}} {{specific_book.uploaded_by.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>Added on:</td>
+                    <td>{{specific_book.created_at|date:'yy-m-d'}}</td>
+                </tr>
+                <tr>
+                    <td>Last updated on:</td>
+                    <td>{{specific_book.updated_at}}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><textarea name="desc" id="" cols="30" rows="10">{{specific_book.desc}}</textarea></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Update" class="button">
+            </div>
+        </form>
+        <form action="/delete/{{specific_book.id}}" method="POST">
+            {%csrf_token%}
+
+            <input type="submit" value="Delete" class="button">
+        </form>
+        <div>
+            <h1>Users Who Like This Book:</h1>
+            {% for user in specific_book.users_who_like.all%}
+            {% if user.id == request.session.logged_user_id%}
+            <p>{{user.first_name}} {{user.last_name}}</p>
+            <a href="/removefav/{{specific_book.id}}">Un Favorite</a>
+            {%else%}
+            <p>{{user.first_name}} {{user.last_name}}</p>
+            {%endif%}
+            {% endfor %} 
+        </div>
+    </div> 
+</body>
+
+{%else%}
+
+
+<body>
+    <!-- VALIDATIONPART ###########################################################################-->
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+<!-- VALIDATIONPART ###########################################################################-->
+   <div class="header">
+       <div class="left_header"> 
+           <h3 class="welcome">Welcome, {{request.session.logged_user_firstname}}!</h1> 
+           <a href="/logout">Log Off</a>
+       </div>
+   </div>
+   <hr>
+   <div class="main">
+       <form action="/books/{{specific_book.id}}" method="POST">
+           {%csrf_token%}
+           <h1>Add a Favorite Book</h1>
+           <table>
+               <tr>
+                   <td>Title:</td>
+                   <td>{{specific_book.title}}</td>
+               </tr>
+               <tr>
+                   <td>Added by:</td>
+                   <td>{{specific_book.uploaded_by.first_name}} {{specific_book.uploaded_by.last_name}}</td>
+               </tr>
+               <tr>
+                   <td>Added on:</td>
+                   <td>{{specific_book.created_at|date:'yy-m-d'}}</td>
+               </tr>
+               <tr>
+                   <td>Last updated on:</td>
+                   <td>{{specific_book.updated_at}}</td>
+               </tr>
+               <tr>
+                   <td>Description:</td>
+                   <td>{{specific_book.desc}}</textarea></td>
+               </tr>
+           </table>
+           
+       </form>
+       <div>
+           <h1>Users Who Like This Book:</h1>
+           {% for user in specific_book.users_who_like.all%}
+           <li>{{user.first_name}} {{user.last_name}}</li>
+           {% endfor %} 
+           {%if logged_user not in specific_book.users_who_like.all %}
+           <a href="/addfav/{{specific_book.id}}">Add To Favorite</a>
+           {%endif%}
+
+       </div>
+   </div> 
+</body>
+{%endif%}
+</html>

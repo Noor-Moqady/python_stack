@@ -22,3 +22,10 @@ hr{
     background-color: blue;
     color: white;
 }
+.main{
+    display: flex;
+    justify-content: space-around;
+}
+*{
+    font-family: cursive;
+   }
