@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="left_header"> 
+            <h3 class="welcome">Welcome, {{request.session.logged_user_firstname}}!</h1> 
+            <a href="/logout">Log Off</a>
+        </div>
+    </div>
+    <hr>
+<!-- VALIDATIONPART ###########################################################################-->
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+<!-- VALIDATIONPART ###########################################################################-->
+    <div class=" main">
+        <form action="/addbook" method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="which_form" value="registration">
+            <h1>Registration</h1>
+            <table>
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" name="title"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><textarea name="desc" id="" cols="30" rows="10"></textarea></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Add">
+            </div>
+        </form>
+        <div>
+            <h1>All Books</h1>
+            {% for book in allbooks%}
+            <a href="/books/{{book.id}}">{{book.title}}</a>
+            <p>Added by:{{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</p>
+            {%if book not in specific_user.books_liked.all%}
+            <a href="/addtofavorite/{{book.id}}">Add To Favorite</a>
+            {%else%}
+                <p>This is on of your favorites</p>
+            {%endif%}
+            <hr>
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>
+
+
