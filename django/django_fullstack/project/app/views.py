@@ -98,7 +98,7 @@ def specific_book_update(request, id):
             context={
             'specific_book':Book.objects.get(id=int(id)),
             'logged_user':User.objects.get(id=int(request.session['logged_user_id'])),
-        'users_who_like_ids': Book.objects.get(id=int(id)).users_who_like.all().values_list('id', flat=True)
+        # 'users_who_like_ids': Book.objects.get(id=int(id)).users_who_like.all().values_list('id', flat=True)
         }
             return render(request,"specific_book.html", context)
         if request.method == 'POST':

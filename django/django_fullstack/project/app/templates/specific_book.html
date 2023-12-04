@@ -126,16 +126,23 @@
             <h1>User who like this book:</h1>
         {% for user in specific_book.users_who_like.all%}
             {% if user.id == request.session.logged_user_id%}
-            <p>{{user.first_name}} {{user.last_name}} <a href="/remove/{{specific_book.id}}">Un-Favorite</a></p>
+            <p>{{user.first_name}} {{user.last_name}}<a href="/remove/{{specific_book.id}}">Un-Favorite</a></p>
             {%else%}
             <p>{{user.first_name}} {{user.last_name}} </p>
             {%endif%}
         {%endfor%}
-        {%if request.session.logged_user_id not in users_who_like_ids %}
+
+        <!-- {%if request.session.logged_user_id not in users_who_like_ids %}
         <a href="/addtofavorite/{{specific_book.id}}">Add to Favorite</a>
         {%else%}
         <div></div>
-        {% endif %}
+        {% endif %} -->
+
+        {%if logged_user not in specific_book.users_who_like.all %}
+           <a href="/addtofavorite/{{specific_book.id}}">Add To Favorite</a>
+           {%endif%}
+
+       
         </div>
     </div>
 </body>
