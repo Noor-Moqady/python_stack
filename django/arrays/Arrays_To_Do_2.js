@@ -30,36 +30,26 @@ function reverseArray(arr) {
     
     // Filter Range
     function filterRange(arr, min, max) {
-        let i = 0;
-        while (i < arr.length) {
-            if (arr[i] < min || arr[i] > max) {
-                for (let j = i; j < arr.length - 1; j++) {
-                    arr[j] = arr[j + 1];
-                }
-                arr.pop(); 
-            } else {
-                i++;
+        new_arr=[]
+        for(i=0; i<arr.length ; i++){
+            if (arr[i] > min && arr[i] < max) {
+                new_arr.push(arr[i])
+
             }
         }
-        return arr;
+        return new_arr;
     }
-    
+
    console.log(filterRange([5, 7, 2, 9, 12, 4], 3, 8))
 
 //////////////////////////////////////////////////////////////////
     
     // Concat
     function arrConcat(arr1, arr2) {
-        const newArray = [];
-        
-        for (i = 0; i < arr1.length; i++) {
-            newArray.push(arr1[i]);
-        }
-        
         for (j = 0; j < arr2.length; j++) {
-            newArray.push(arr2[j]);
+            arr1.push(arr2[j]);
         }
         
-        return newArray;
+        return arr1;
     }
 console.log(arrConcat(['a', 'b'], [1, 2]))    
