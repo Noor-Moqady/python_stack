@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book and Review</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'book_style.css' %}">
+</head>
+<body>
+    <div class="main_container">
+        <div class="footer">
+            <div>
+                <h1>{{book.title}}</h1>
+                <p>Author:</p>
+                {% for author in book.book_authors.all %}
+                <p> {{author.name}}</p>
+                {% endfor %}
+            </div>
+            <div class="link">
+                <a href="/success">Home</a>
+                <a href="/books/add">add book and review</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+                <h4>Reviews:</h4>
+                <div>
+                {% for review in book.reviews_book.all %}
+                    <hr>
+                    <p>Rating:{% for x in range %}
+                        {% if x <= review.rating %}
+                        <span class="fa fa-star checked"></span>
+                        {% else %}
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}</p>
+                    <p><a href="/users/{{review.users.id}}">{{review.users.alias}}</a> says: {{review.review_content}}</p>
+                    <p>{{review.created_at}}</p>
+                    {% if review.users.id == request.session.user_id %}
+                    <p><a href="/delete/review/{{review.id}}">Delete</a></p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+            <div class="right">
+                <form action="/review/add_procces" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="book_id" value="{{book.id}}">
+                    <h4>Add a Review:</h4>
+                    <textarea name="add_review"  cols="30" rows="10"></textarea>
+                    <p>Rating</p>
+                    <select name="rating" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="Submit Review">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 2rem;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.link{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15rem;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+}

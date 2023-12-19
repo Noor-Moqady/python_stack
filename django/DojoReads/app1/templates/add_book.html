@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book and Review</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'add_book_style.css' %}">
+</head>
+<body>
+    <a href="/success">Home</a>
+    <form action="/books/add_procces" method="post">
+        {% csrf_token %}
+        <h1>Add a New Book Title and a Review:</h1>
+        <p>Book Title:</p>
+        <input type="text" name="title">
+        <p>Author:</p>
+        <p>Choose from the list:</p>
+        <select name="author_select" >
+            {% for author in allauthours %}
+            <option value="{{author.id}}">{{author.name}}</option>
+            {% endfor %}
+        </select>
+        <p>Or add a new author:</p>
+        <input type="text" name="author_new">
+        <p>Review:</p>
+        <textarea name="add_review"  cols="30" rows="10"></textarea>
+        <p>Rating:</p>
+        <select name="rate" >
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+        <input type="submit" value="Add Book and Review">
+    </form>
+
+</body>
+</html>

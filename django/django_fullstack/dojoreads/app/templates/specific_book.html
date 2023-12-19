@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div  class="login_page">
+        <div>
+            {{specific_book.title}}
+            {% for review in specific_book.review_book.all%}
+            <p>Rating: {{review.rate}}</p>
+            <p><a href="/users/{{review.user.id}}">{{review.user.name}}</a> says:{{review.review}}</p>
+            <p>Posted on: {{review.created_at}}</p>
+            {%if request.session.logged_user_id == review.user.id%}
+            <a href="/delete/{{review.id}}/{{specific_book.id}}">delete this review</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div>
+            <form action="/addreview/{{specific_book.id}}" method="POST">
+                {%csrf_token%}
+                <table>
+                    <tr>
+                        <td>Add a Review:</td>
+                        <td><textarea name="review" id="" cols="30" rows="10"></textarea></td>
+
+                    </tr>
+                    <tr>
+                        <td>Rating:<input type= "number" name="rate">stars</td>
+                    </tr>
+                </table>
+            <div>
+                <input type="submit" value="Submit Review">
+            </div>
+        </form>
+        </div>
+    </div>
+    
+</body>
+</html>

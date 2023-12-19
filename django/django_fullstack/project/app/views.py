@@ -88,6 +88,7 @@ def addtofavorite(request,id):
     specific_user=User.objects.get(id=request.session['logged_user_id'])
     specific_user.books_liked.add(specific_book)
     return redirect('/books')
+
 def specific_book_update(request, id):
     if not 'logged_user_id' in request.session:
         messages.error(request,"You have to login first")

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'home_style.css' %}">
+</head>
+<body>
+    <div class="main_container">
+        <div class="footer">
+            <h1>Welcome, {{username}}</h1>
+            <div class="link">
+                <a href="/success">Home</a>
+                <a href="/books/add">add book and review</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+                <h4>Recent Book Reviews:</h4>   
+                {% for book in allbooks %}
+                <div class="books">
+                    <h3><a href="/books/{{book.id}}">{{book.title}}</a></h3>
+                    <div class="review">
+                        {% for review in book.reviews_book.all %}
+                        <hr class="review">
+                        <p>Rating:{% for x in range %}
+                            {% if x <= review.rating %}
+                            <span class="fa fa-star checked"></span>
+                            {% else %}
+                            <span class="fa fa-star"></span>
+                            {% endif %}
+                        {% endfor %}</p>
+                        <p><a href="/users/{{review.users.id}}">{{review.users.alias}}</a> says: {{review.review_content}}</p>
+                        <p>{{review.created_at}}</p>
+                        {% if review.users.id == request.session.user_id %}
+                        <p><a href="/delete/review/{{review.id}}">Delete</a></p>
+                        {% endif %}
+                        {% endfor %}
+                        <!-- <p><a href="/delete/{{book.id}}">Delete</a></p> -->
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+            <div class="right">
+                <h4>Other Books with Reviews:</h4>
+                <div class="otherbook">
+                    {% for book in allbooks %}
+                    <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    
+        
+    
+</body>
+</html>

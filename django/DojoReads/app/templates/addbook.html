@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book and Review</title>
+</head>
+<body>
+    <!-- VALIDATIONPART ###########################################################################-->
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+<!-- VALIDATIONPART ###########################################################################-->
+    <form action="/books/add" method="POST">
+        {%csrf_token%}
+        <input type="hidden" name="which_form" value="addbook">
+        <h1>Add a New Book and a Review:</h1>
+        <table>
+            <tr>
+                <td>Book Title:</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>Author:</td>
+            </tr>
+            <tr>
+                <td>Choose from the list:</td>
+                <td>
+                <select name="authorselect">
+                    {% for author in allauthors%}
+                        <option value="{{author.id}}">{{author.name}}</option>
+                    {% endfor %}
+                </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Or add a new author:</td>
+                <td><input type="text" name="author"></td>
+            </tr>
+            
+            <tr>
+                <td>Review:</td>
+                <td><textarea name="review" id="" cols="30" rows="10"></textarea></td>
+                
+            </tr>
+            <tr>
+                <td>Rating:<input type= "number" name="rate">stars</td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Add Book and Review">
+        </div>
+    </form>
+</body>
+</html>

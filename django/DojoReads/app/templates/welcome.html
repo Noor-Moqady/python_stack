@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="left_header"> 
+            <h3 class="welcome">Welcome, {{request.session.logged_user_name}}!</h1> 
+            <div>
+                <a class="addbook" href="/books/add">Add Book and Review</a>
+                <a href="/logout">Log Off</a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="login_page">
+        <div>
+            <h1>Recent Book Reviews:</h1>
+            {% for book in latest3book%}
+            <a href="/books/{{book.id}}">{{book.title}}</a>
+            <p><a href="">{{book.last_review.user.name}}</a> {{ book.last_review.review}}</p>
+            <p>Rating: {{ book.last_review.rate }}</p>
+            <P>Posted on: {{book.last_review.created_at}}</P> 
+
+            {%endfor%}
+        </div>
+        <div>
+            <h1>Other Books with Reviews:</h1>
+            <div class="other">
+            {% for book in allbooks%}
+            <a href="/books/{{book.id}}">{{book.title}}</a>
+            <a href="">{{book.first_review.review}}</a>
+
+            {% endfor %}
+
+            </div>
+        </div>
+    
+    </div>
+</body>
+</html>
+
+

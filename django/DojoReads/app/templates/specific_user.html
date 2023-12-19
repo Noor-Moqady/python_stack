@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{specific_user.alias}}</p>
+    <p>{{specific_user.name}}</p>
+    <p>{{specific_user.email}}</p>
+    <p>{{specific_user.review_user.count}}</p>
+
+    {% for review in specific_user.review_user.all%}
+    <a href="/books/{{review.book.id}}">{{review.book.title}}</a>
+    
+    {% endfor%}
+
+</body>
+</html>

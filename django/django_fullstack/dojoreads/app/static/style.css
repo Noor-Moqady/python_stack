@@ -1,0 +1,35 @@
+.login_page{
+    display: flex;
+    justify-content: space-around;
+}
+
+.left_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+hr{
+    margin-top: 0px;
+    height: 2px;
+    background-color: black;
+}
+.welcome{
+    margin-right: 80px;
+}
+.button{
+    box-shadow: 4px 4px 2px 1px black;
+    background-color: blue;
+    color: white;
+}
+.addbook{
+    margin-right: 100px;
+}
+.other{
+    margin-left: 4%;
+    margin-right: 4%;
+    text-align: start;
+    font-weight: bold;
+    overflow:scroll;
+    height: 200px;
+}

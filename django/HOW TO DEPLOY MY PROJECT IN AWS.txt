@@ -1,0 +1,74 @@
+### i - enter INSERT mode. You should see –INSERT– at the bottom left corner of your terminal. Now use your arrow keys to move the cursor to where you want to edit and make your changes.
+### esc - exit INSERT mode.
+: - when not in INSERT mode, enters the vim command interface. You should now see a colon at the bottom left corner of your terminal.
+:w and Enter - save.
+:wq and Enter - save and quit.
+:q! and Enter - quit without saving.
+
+1. server access tap 
+after creating launch instance then connect to server then SSH client then copy the command and past it in the Git Bash not CMD because we will use LINUX comands rather than windows command BUT BE SURE to open GitBash in the same place i save key.pem
+
+2. sudo apt-get update
+3. sudo apt-get install nginx
+4. git clone {{https://github.com/your_username_here/your_repo_name_here}} FROM GITHUB IN MY REPOSETORY THEN FREEG BUTTON CODE THEN COPY HTTPS LINK
+5. sudo apt-get install python3-venv        //Say YES when prompted
+5. cd {{ repo name }}
+6. python3 -m venv venv     //We are using the venv 
+7. source venv/bin/activate
+8. pip install django==2.2
+9. pip install bcrypt
+10. pip install gunicorn
+11. cd {{projectName}}
+12. sudo vim settings.py
+13. # inside settings.py AND # modify these lines
+DEBUG = False
+ALLOWED_HOSTS = ['{{yourEC2.public.IP}}']	             # keep the quotes!  ما تنسي تكتبي i على الكيبورد لما تيجي تعدلي على الفايلات 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")	             # add this line at the bottom; don't replace any existing lines!
+:wq
+
+14. cd ..
+15. python manage.py collectstatic
+16. python manage.py makemigrations
+17. python manage.py migrate
+18. gunicorn {{project_name}}.wsgi
+19. اضغكي على الكيبورد CTRL-C
+20. deactivate
+21. sudo vim /etc/systemd/system/gunicorn.service
+
+22. 
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/{{myRepoName}}
+ExecStart=/home/ubuntu/{{myRepoName}}/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/{{myRepoName}}/{{projectName}}.sock {{projectName}}.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+23. sudo systemctl daemon-reload
+24. sudo systemctl restart gunicorn
+25. sudo systemctl status gunicorn
+26. sudo vim /etc/nginx/sites-available/{{projectName}}
+27. Add the following to this new document, editing what's inside curly braces {{}}. Don't forget to type i to enter insert mode.####Save and exit. (esc, :wq, enter)
+
+server {
+  listen 80;
+  server_name {{yourEC2.public.ip}};
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/{{myRepoName}};
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/{{myRepoName}}/{{projectName}}.sock;
+  }
+}
+
+28. sudo ln -s /etc/nginx/sites-available/{{projectName}} /etc/nginx/sites-enabled
+29. sudo nginx -t
+30. sudo rm /etc/nginx/sites-enabled/default
+31. sudo service nginx restart
+
+

@@ -1,0 +1,5 @@
+bcrypt==4.1.1
+Django==2.2.4
+Pillow==9.5.0
+pytz==2023.3.post1
+sqlparse==0.4.4
